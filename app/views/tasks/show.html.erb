@@ -1,0 +1,13 @@
+<h1>Detail Task by ID: <%= @task.id %></h1>
+
+<br>
+<b>Name : </b><%= @task.name %><br>
+<b>Description : </b><%= @task.description == nil ? '-' : @task.description %><br>
+<b>Due Date : </b><%= @task.due_date.strftime("%d %B %Y") %><br>
+<b>Priority : </b><%= "#{@task.priority}/10" %><br>
+<b>Created At : </b><%= @task.created_at.strftime("%H:%M %p, %d %B %Y") %><br>
+<br>
+
+<%= link_to '/tasks', class: 'btn btn-secondary' do %>
+    <i class="fa fa-arrow-left"></i>
+<% end %>

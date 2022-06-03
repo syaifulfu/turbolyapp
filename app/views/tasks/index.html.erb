@@ -1,0 +1,54 @@
+<% if current_user %>
+<div class="row">
+    <div class="col-md-11">
+        <h1>Tasks</h1>
+    </div>
+    <div class="col-md-1">
+        <%= link_to new_task_path, class: 'btn btn-success' do %>
+            <i class="fa fa-add"></i>
+        <% end %>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Due Date</th>
+            <th>Priority</th>
+            <th>Created At</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% no = 1 %>
+        <% @tasks.each do |task| %>
+            <tr>
+                <td><%= no %></td>
+                <td><%= task.name %></td>
+                <td><%= task.description %></td>
+                <td><%= task.due_date.strftime("%d %B %Y") %></td>
+                <td><%= "#{task.priority}/10" %></td>
+                <td><%= task.created_at.strftime("%H:%M %p, %d %B %Y") %></td>
+                <td>
+                    <%= link_to task, class: "btn btn-info btn-sm" do %>
+                        <i class="fa fa-eye"></i>
+                    <% end %>
+                    <%= link_to edit_task_path(task), class: "btn btn-warning btn-sm" do %>
+                        <i class="fa fa-pencil"></i>
+                    <% end %>
+                    <%= link_to task, class: "btn btn-danger btn-sm", data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete this data?"} do %>
+                        <i class="fa fa-trash"></i>
+                    <% end %>
+                </td>
+            </tr>
+            <% no += 1 %>
+        <% end %>
+    </tbody>
+</table>
+
+<% else %>
+    <h1 class="text-center">You're not logged in</h1>
+<% end %>

@@ -1,0 +1,59 @@
+<%= form_with model: @task do |form| %>
+    <%
+        def cError(col)
+            @task.errors.full_messages_for(col)
+        end
+    %>
+    <div class="mb-3 row">
+        <%= form.label :name, class: "col-sm-2 col-form-label #{cError(:name).any? ? 'text-danger' : ''}" %>
+        <div class="col-sm-10">
+            <%= form.text_field :name, class: "form-control #{cError(:name).any? ? 'is-invalid' : ''}" %>
+            <% cError(:name).each do |e| %>
+                <small class="text-danger"><%= e %></small><br>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <%= form.label :description, class: "col-sm-2 col-form-label #{cError(:description).any? ? 'text-danger' : ''}" %>
+        <div class="col-sm-10">
+            <%= form.text_area :description, class: "form-control #{cError(:description).any? ? 'is-invalid' : ''}", rows: 3 %>
+            <% cError(:description).each do |e| %>
+                <small class="text-danger"><%= e %></small><br>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <%= form.label :due_date, class: "col-sm-2 col-form-label #{cError(:due_date).any? ? 'text-danger' : ''}" %>
+        <div class="col-sm-10">
+            <%= form.text_field :due_date, class: "form-control #{cError(:due_date).any? ? 'is-invalid' : ''}", type: "date" %>
+            <% cError(:due_date).each do |e| %>
+                <small class="text-danger"><%= e %></small><br>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <%= form.label :priority, class: "col-sm-2 col-form-label #{cError(:priority).any? ? 'text-danger' : ''}" %>
+        <div class="col-sm-10">
+            <%= form.text_field :priority, class: "form-control #{cError(:priority).any? ? 'is-invalid' : ''}", type: 'number', min: 0, max: 10 %>
+            <small>1-10<br>
+            <% cError(:priority).each do |e| %>
+                <small class="text-danger"><%= e %></small><br>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <%= form.label ' ', class: 'col-sm-2 col-form-label' %>
+        <div class="col-sm-10">
+            <%= button_tag ' ', class: 'btn btn-success' do %>
+                <i class="fa fa-save"></i>
+            <% end %>
+            <%= link_to "/tasks", class: 'btn btn-secondary' do %>
+                <i class="fa fa-arrow-left"></i>
+            <% end %>
+        </div>
+    </div>
+<% end%>
