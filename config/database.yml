@@ -50,6 +50,8 @@ test:
 #
 production:
   <<: *default
+  host: 49.50.10.53
   database: turbolyapp_production
-  username: turbolyapp
-  password: <%= ENV["TURBOLYAPP_DATABASE_PASSWORD"] %>
+  username: root
+  # password: <%= ENV["TURBOLYAPP_DATABASE_PASSWORD"] %>
+  password: Lycon@2020
