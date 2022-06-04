@@ -1,10 +1,9 @@
 class HomesController < ApplicationController
 
-    def index
-        if current_user == nil
-            redirect_to login_path
-        end
-    end
+    include ApplicationHelper
     
+    def index
+        login_check
+    end
 
 end

@@ -1,5 +1,7 @@
 class TasksController < ApplicationController
 
+    include ApplicationHelper
+
     def index
         login_check
         @tasks = Task.all
@@ -66,12 +68,6 @@ class TasksController < ApplicationController
             "due_date" => params[:task][:due_date],
             "priority" => params[:task][:priority].to_i,
         }
-    end
-
-    def login_check
-        if current_user == nil
-            redirect_to login_path
-        end
     end
 
 end

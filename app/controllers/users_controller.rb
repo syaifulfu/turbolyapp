@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
 
+    include ApplicationHelper
+
     def new
+        login_check
+        logged_in_check
+
         @user = User.new
     end
     

@@ -18,4 +18,7 @@ Rails.application.routes.draw do
   # TASK
   resources :tasks
 
+  # TODAY
+  get '/todays' => 'todays#index', as: :todays
+
 end
