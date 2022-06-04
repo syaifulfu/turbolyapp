@@ -1,7 +1,7 @@
 module ApplicationHelper
 
     def todays
-        @todays = Task.where(due_date: Date.today).order(priority: :desc, created_at: :asc)
+        @todays = Task.where(created_by: current_user.id, due_date: Date.today).order(priority: :desc, created_at: :asc)
     end
 
     def login_check

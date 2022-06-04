@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
     def destroy
         # delete the saved user_id key/value from the cookie:
         session.delete(:user_id)
-        redirect_to login_path, success: "Logged out!"
+        redirect_to root_path, success: "Logged out!"
     end
 
 end

@@ -4,7 +4,7 @@ class TasksController < ApplicationController
 
     def index
         login_check
-        @tasks = Task.all
+        @tasks = current_user ? Task.where(created_by: current_user.id).all : Task.all
     end
     
     def show
@@ -13,6 +13,7 @@ class TasksController < ApplicationController
     end
 
     def new
+        login_check
         @task = Task.new
     end
     
@@ -35,6 +36,7 @@ class TasksController < ApplicationController
     end
     
     def update
+        login_check
         @task = Task.find(params[:id])
 
         if @task.update(task_params)
@@ -48,6 +50,7 @@ class TasksController < ApplicationController
     
 
     def destroy
+        login_check
         @task = Task.find(params[:id])
         
         if @task.destroy
@@ -67,6 +70,7 @@ class TasksController < ApplicationController
             "description" => params[:task][:description],
             "due_date" => params[:task][:due_date],
             "priority" => params[:task][:priority].to_i,
+            "created_by" => current_user.id
         }
     end
 
