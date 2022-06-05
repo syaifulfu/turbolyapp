@@ -14,10 +14,54 @@
     <thead>
         <tr>
             <th>No</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Due Date</th>
-            <th>Priority</th>
+            <th>
+                Name
+                <% if @order_name == 'name#asc' %>
+                    <%= link_to "/tasks/order/name/desc" do %>
+                        <i class="fa fa-arrow-up"></i>
+                    <% end %>
+                <% else %>
+                    <%= link_to "/tasks/order/name/asc" do %>
+                        <i class="fa fa-arrow-down"></i>
+                    <% end %>
+                <% end %>
+            </th>
+            <th>
+                Description
+                <% if @order_description == 'description#asc' %>
+                    <%= link_to "/tasks/order/description/desc" do %>
+                        <i class="fa fa-arrow-up"></i>
+                    <% end %>
+                <% else %>
+                    <%= link_to "/tasks/order/description/asc" do %>
+                        <i class="fa fa-arrow-down"></i>
+                    <% end %>
+                <% end %>
+            </th>
+            <th>
+                Due Date
+                <% if @order_due_date == 'due_date#asc' %>
+                    <%= link_to "/tasks/order/due_date/desc" do %>
+                        <i class="fa fa-arrow-up"></i>
+                    <% end %>
+                <% else %>
+                    <%= link_to "/tasks/order/due_date/asc" do %>
+                        <i class="fa fa-arrow-down"></i>
+                    <% end %>
+                <% end %>
+            </th>
+            <th>
+                Priority
+                <% if @order_priority == 'priority#asc' %>
+                    <%= link_to "/tasks/order/priority/desc" do %>
+                        <i class="fa fa-arrow-up"></i>
+                    <% end %>
+                <% else %>
+                    <%= link_to "/tasks/order/priority/asc" do %>
+                        <i class="fa fa-arrow-down"></i>
+                    <% end %>
+                <% end %>
+            </th>
             <th>Created At</th>
             <th>Action</th>
         </tr>

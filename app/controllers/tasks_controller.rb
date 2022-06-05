@@ -6,6 +6,31 @@ class TasksController < ApplicationController
         login_check
         @tasks = current_user ? Task.where(created_by: current_user.id).all : Task.all
     end
+
+    def order
+        login_check
+
+        if current_user
+            if params[:column] == 'name'
+                @order_name = "#{params[:column]}##{params[:order]}"
+                @tasks = Task.where(created_by: current_user.id).order(name: params[:order]).all
+            elsif params[:column] == 'description'
+                @order_description = "#{params[:column]}##{params[:order]}"
+                @tasks = Task.where(created_by: current_user.id).order(description: params[:order]).all
+            elsif params[:column] == 'due_date'
+                @order_due_date = "#{params[:column]}##{params[:order]}"
+                @tasks = Task.where(created_by: current_user.id).order(due_date: params[:order]).all
+            elsif params[:column] == 'priority'
+                @order_priority = "#{params[:column]}##{params[:order]}"
+                @tasks = Task.where(created_by: current_user.id).order(priority: params[:order]).all
+            end
+        else
+            @tasks = Task.all
+        end
+
+        render 'tasks/index'
+    end
+    
     
     def show
         login_check
@@ -70,7 +95,8 @@ class TasksController < ApplicationController
             "description" => params[:task][:description],
             "due_date" => params[:task][:due_date],
             "priority" => params[:task][:priority].to_i,
-            "created_by" => current_user.id
+            "created_by" => current_user.id,
+            "is_completed" => params[:task][:is_completed]
         }
     end
 

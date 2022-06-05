@@ -38,12 +38,26 @@
         <%= form.label :priority, class: "col-sm-2 col-form-label #{cError(:priority).any? ? 'text-danger' : ''}" %>
         <div class="col-sm-10">
             <%= form.text_field :priority, class: "form-control #{cError(:priority).any? ? 'is-invalid' : ''}", type: 'number', min: 0, max: 10 %>
-            <small>1-10<br>
+            <small>1-10</small>
             <% cError(:priority).each do |e| %>
                 <small class="text-danger"><%= e %></small><br>
             <% end %>
         </div>
     </div>
+
+    <% if request.fullpath == new_task_path %>
+        <%= form.check_box :is_completed, class: "#{cError(:is_completed).any? ? 'is-invalid' : ''}", style: "display: none", value: 0 %>
+    <% else %>
+        <div class="mb-3 row">
+            <%= form.label :is_completed, class: "col-sm-2 col-form-label #{cError(:is_completed).any? ? 'text-danger' : ''}" %>
+            <div class="col-sm-10">
+                <%= form.check_box :is_completed, class: "#{cError(:is_completed).any? ? 'is-invalid' : ''}" %>
+                <% cError(:is_completed).each do |e| %>
+                    <small class="text-danger"><%= e %></small><br>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
 
     <div class="mb-3 row">
         <%= form.label ' ', class: 'col-sm-2 col-form-label' %>

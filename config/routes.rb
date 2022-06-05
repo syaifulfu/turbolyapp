@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   # TASK
   resources :tasks
+	get '/tasks/order/:column/:order' => 'tasks#order'
 
   # TODAY
   get '/todays' => 'todays#index', as: :todays

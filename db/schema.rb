@@ -17,6 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_03_091429) do
     t.date "due_date"
     t.integer "priority"
     t.string "created_by"
+    t.boolean "is_completed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
