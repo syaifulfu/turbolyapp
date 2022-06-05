@@ -46,7 +46,7 @@
     </div>
 
     <% if request.fullpath == new_task_path %>
-        <%= form.check_box :is_completed, class: "#{cError(:is_completed).any? ? 'is-invalid' : ''}", style: "display: block", value: 0 %>
+        <%= form.check_box :is_completed, class: "d-none #{cError(:is_completed).any? ? 'is-invalid' : ''}", value: 0 %>
     <% else %>
         <div class="mb-3 row">
             <%= form.label :is_completed, class: "col-sm-2 col-form-label #{cError(:is_completed).any? ? 'text-danger' : ''}" %>
